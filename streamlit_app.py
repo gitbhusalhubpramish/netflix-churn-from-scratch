@@ -4,6 +4,7 @@ import streamlit as st
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+st.write('''## Data(set)''')
 path = kagglehub.dataset_download("abdulwadood11220/netflix-customer-churn-dataset", "netflix_customer_churn.csv")
 
 df = pd.read_csv(path)
