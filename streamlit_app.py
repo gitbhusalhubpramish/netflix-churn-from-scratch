@@ -16,4 +16,36 @@ x,y = df[["age", "subscription_type", "watch_hours", "monthly_fee"]], df["churne
 
 xtrain, xtest, ytrain, ytest = train_test_split(x,y, test_size=0.2, random_state=42, stratify=y)
 
+def gini(y):
+	cls, cnt = np.unique(y, return_counts=True)
+	impr = 1
+	for count in cnt:
+		impr -= (count/len(y))**2
+	return impr
+
+def split(x,y,feature, trashold):
+	left = x[feature]<=trashold
+	right = x[feature]>trashold
+	return (x[left], y[left], x[right], y[right])
+
+def split_score(ly,ry):
+	n = len(ly) len(ry)
+	return (len(ly)/n)*gini(ly) + (len(ry)/n)*gini(ry)
+
+def best_split(x,y):
+	best = None
+	bestscr = float("inf")
+	for feature in x:
+		values = np.unique(x[feature])
+		for trashold in values:
+			xl,yl,xr,yr = split(x,y,feature,trashold)
+			if len(yl) == 0 or len(yr) == 0:
+				continue
+			score=split_score(yl,yr)
+			if score<bestscr:
+				bestscr = score
+				best = {"feature": feature, "trashold": trashold, "left":(xl,yl), "right": (xr,yr)}
+
+	best
+
 
