@@ -84,8 +84,8 @@ for i in range(1,10):
 	tree = build_tree(xtrain,ytrain, 0,i)
 	prediction = xtest.apply(lambda x: run_tree(tree,x), axis =1)
 	predictiontrain = xtrain.apply(lambda x:run_tree(tree, x), axis=1)
-	acc["test"].append(accuracy_score(prediction))
-	acc["train"].append(accuracy_score(predictiontrain))
+	acc["test"].append(accuracy_score(prediction, ytest))
+	acc["train"].append(accuracy_score(predictiontrain, ytrain))
 
 st.write('''## Accuracy''')
 
