@@ -102,7 +102,7 @@ def build_graph(root):
 st.write('''## Models''')
 st.write('''It trains 9 decision tree with same algoritm but with different depth.''')
 
-charts = [st.empty() for _ in range(1,10*2)]
+charts = [st.empty() for _ in range(1,10*2+1)]
 
 acc = {"train":[], "test":[]}
 
