@@ -30,7 +30,7 @@ def split(x,y,feature, trashold):
 	return (x[left], y[left], x[right], y[right])
 
 def split_score(ly,ry):
-	n = len(ly) len(ry)
+	n = len(ly)+len(ry)
 	return (len(ly)/n)*gini(ly) + (len(ry)/n)*gini(ry)
 
 def best_split(x,y):
@@ -47,7 +47,7 @@ def best_split(x,y):
 				bestscr = score
 				best = {"feature": feature, "trashold": trashold, "left":(xl,yl), "right": (xr,yr)}
 
-	best
+	return best
 
 class Node:
 	def __init__(self, feature=None, trashold=None, left = None, right=None, value=None):
