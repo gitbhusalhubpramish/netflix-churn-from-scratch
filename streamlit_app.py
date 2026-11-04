@@ -48,4 +48,20 @@ def best_split(x,y):
 
 	best
 
+class Node:
+	def __init__(self, feature=None, trashold=None, left = None, right=None, value=None):
+		self.feature = feature
+		self.trashold = trashold
+		self.left = left
+		self.right = right
+		self.value = value
+
+def build_tree(X,Y, depth, max_depth):
+	if depth == max_depth or len(set(Y)) == 1:
+		return Node(value=max(set(Y), key=list(Y).count))
+
+	best = best_split(X,Y)
+	left = build_tree(best["left"][0], best["left"][1], depth+1, max_depth)
+	right = build_tree(best["right"][0], best["right"][1], depth+1, max_depth)
+	return Node(feature=best["feature"], trashold=best["trashold"], left=left, right=right)
 
