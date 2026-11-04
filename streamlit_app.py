@@ -115,7 +115,7 @@ for i in range(1,10):
 	tree = build_tree(xtrain,ytrain, 0,i)
 	graph = graphviz.Source(build_graph(tree))
 	svg=graph.pipe(format="svg", engine="dot").decode("utf-8")
-	charts[i*2].graphviz(graph)
+	charts[i*2].graphviz_chart(graph)
 	charts[i*2+1].download_button(label="Download Tree", data = svg, file_name=f"decisiontree({i}).svg", mime="image/svg+xml")
 	prediction = xtest.apply(lambda x: run_tree(tree,x), axis =1)
 	predictiontrain = xtrain.apply(lambda x:run_tree(tree, x), axis=1)
