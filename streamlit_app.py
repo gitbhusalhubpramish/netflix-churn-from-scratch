@@ -75,19 +75,50 @@ def run_tree(node, x):
 	else:
 		return run_tree(node.right, x)
 
+def build_graph(root):
+	graph = []
+	def traverse(node, node_id=0):
+		nonlocal graph
+		if node is None:
+			return 
+		if node.value is not None:
+			graph.append(f'{node_id} [label="predict: {node.value}"]')
+			return
+
+		graph.append(f'{node_id} [label="X[{node.feature}]>={node.trashold:.3f}"];')
+		
+		for child, child_id, label in [(node.left, 2*node_id+1, "True"), (node.right, 2*node_id+2, "False")]:
+			if child:
+				graph.append(f'{node_id}-> {child_id} [label="{label}"];')
+				traverse(child, child_id)
+
+	traverse(root)
+	return """digraph Tree{\n graph [rankdir=TB, nodesep=0.08, ranksep=0.3 spline=line, fontsize=5, pad = 0.1]; node [fontsize=2, width=0.2, height=0.1, margin=0.1, fixedsize=false] edge [fontsize=2, arrowsixe = 0.1];""" + "\n".join(graph)+"}"
+
+
+
+
 st.write('''## Models''')
 st.write('''It trains 9 decision tree with same algoritm but with different depth.''')
 
+charts = [st.empty() for _ in range(1,10*2)]
+
 acc = {"train":[], "test":[]}
+
+st.write('''## Accuracy''')
+st.write('''The accuracy of 9 model given above is:''')
+
+accchat = st.empty()
 
 for i in range(1,10):
 	tree = build_tree(xtrain,ytrain, 0,i)
+	graph = graphviz.Source(build_graph(tree))
+	svg=graph.pipe(format="svg", engine="dot").decode("utf-8")
+	charts[i*2].graphviz(graph)
+	charts[i*2+1].download_button(label="Download Tree", data = svg, file_name=f"decisiontree({i}).svg", mime="image/svg+xml")
 	prediction = xtest.apply(lambda x: run_tree(tree,x), axis =1)
 	predictiontrain = xtrain.apply(lambda x:run_tree(tree, x), axis=1)
 	acc["test"].append(accuracy_score(prediction, ytest))
 	acc["train"].append(accuracy_score(predictiontrain, ytrain))
-
-st.write('''## Accuracy''')
-
-st.write('''The accuracy of 9 models given above is:''')
-st.line_chart(acc)
+	accchat.line_chart(acc)
+	
