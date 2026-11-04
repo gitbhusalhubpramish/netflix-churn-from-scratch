@@ -65,3 +65,27 @@ def build_tree(X,Y, depth, max_depth):
 	right = build_tree(best["right"][0], best["right"][1], depth+1, max_depth)
 	return Node(feature=best["feature"], trashold=best["trashold"], left=left, right=right)
 
+def run_tree(node, x):
+	if node.value is not None:
+		return node.value
+	if x[node.feature]<=node.trashold:
+		return run_tree(node.left, x)
+	else:
+		return run_tree(node.right, x)
+
+st.write('''## Models''')
+st.write('''It trains 9 decision tree with same algoritm but with different depth.''')
+
+acc = {"train":[], "test":[]}
+
+for i in range(1,10):
+	tree = build_tree(xtrain,ytrain, 0,i)
+	prediction = xtest.apply(lambda x: run_tree(tree,x), axis =1)
+	predictiontrain = xtrain.apply(lambda x:run_tree(tree, x), axis=1)
+	acc["test"].append(accuracy_score(prediction))
+	acc["train"].append(accuracy_score(predictiontrain))
+
+st.write('''## Accuracy''')
+
+st.write('''The accuracy of 9 models given above is:''')
+st.line_chart(acc)
