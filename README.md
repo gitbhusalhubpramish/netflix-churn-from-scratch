@@ -18,4 +18,13 @@ This project was made by me to understand Decision from scratch so it has decisi
 - Decision tree visulization
 - streamlit cache
 
+## Tech-Stack
+
+This project uses python liberies used for datascience - visulization, calculation and data manipulation. I've used:
+
+- Numpy for calculation
+- streamlit and graphviz for data visulization and preview
+- Pandas for data manipulation
+- sk-learn for datasplit and accuracy counting
+
 
