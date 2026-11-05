@@ -44,6 +44,15 @@ $$
 
 - **Running/Testing/Plotting:** We run the data through testing data and find accuracy. Also I have ploted all the decision tree too - bonus download button for every tree.
 
+## So, What did I learn?
+
+I had made this project to learn Decision tree from scratch. Of Cource I had learnt that:) but other stuff like:
+
+- Decision Tree
+- Classification
+- Gini impurity
+- tree plotting
+
 ## Some extra info...
 
 I have been learning Meachine Learning from scratch so I make notes and make at least one project for each algorithm. I have writtern a jupiter notebook to plan and make this work them I make a python script file with the help of streamlit so that I can host and support hackclub. Most of the progress of learning is in my notebook(coding time only) while I struggle a lot to research about the algo too. While shifting to another technology like streamlit and learning that took my a lot of time too. I made this project to learn so it has very less QI applied.
