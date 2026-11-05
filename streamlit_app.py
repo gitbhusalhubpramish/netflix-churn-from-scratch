@@ -22,7 +22,7 @@ xtrain, xtest, ytrain, ytest = train_test_split(x,y, test_size=0.2, random_state
 
 st.write('''The more info about the dataset are:''')
 st.write('''- Total rows(data):''', len(df))
-st.write('''- Total churned:''', np.sum(y==1)))
+st.write('''- Total churned:''', np.sum(y==1))
 st.write('''- feature used(in model):''', df.columns)
 st.write('''- Training sample''', len(xtrain))
 st.write('''- Testing sample''', len(xtest))
