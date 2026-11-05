@@ -7,6 +7,7 @@ import numpy as np
 import graphviz
 
 st.write('''## Data(set)''')
+st.write('''This ML project uses [netflix-churn](https://www.kaggle.com/datasets/abdulwadood11220/netflix-customer-churn-dataset) dataset from kaggle wihich provides us the data of users and whether they churned(cancel their subscription) or not.''')
 path = kagglehub.dataset_download("abdulwadood11220/netflix-customer-churn-dataset", "netflix_customer_churn.csv")
 
 df = pd.read_csv(path)
@@ -18,6 +19,13 @@ df["device"] = df["device"].map({"Mobile":1, "Tablet":2, "Laptop":3, "Desktop": 
 x,y = df[["age", "subscription_type", "watch_hours", "monthly_fee"]], df["churned"]
 
 xtrain, xtest, ytrain, ytest = train_test_split(x,y, test_size=0.2, random_state=42, stratify=y)
+
+st.write('''The more info about the dataset are:''')
+st.write('''- Total rows(data):''', len(df))
+st.write('''- Total churned:''', np.sum(y==1)))
+st.write('''- feature used(in model):''', df.columns)
+st.write('''- Training sample''', len(xtrain))
+st.write('''- Testing sample''', len(xtest))
 
 def gini(y):
 	cls, cnt = np.unique(y, return_counts=True)
