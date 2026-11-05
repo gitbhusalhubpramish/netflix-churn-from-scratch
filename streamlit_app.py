@@ -43,6 +43,7 @@ def split_score(ly,ry):
 	n = len(ly)+len(ry)
 	return (len(ly)/n)*gini(ly) + (len(ry)/n)*gini(ry)
 
+@st.cache_data
 def best_split(x,y):
 	best = None
 	bestscr = float("inf")
@@ -67,6 +68,7 @@ class Node:
 		self.right = right
 		self.value = value
 
+@st.cache_data
 def build_tree(X,Y, depth, max_depth):
 	if depth == max_depth or len(set(Y)) == 1:
 		return Node(value=max(set(Y), key=list(Y).count))
