@@ -27,4 +27,21 @@ This project uses python liberies used for datascience - visulization, calculati
 - Pandas for data manipulation
 - sk-learn for datasplit and accuracy counting
 
+## Work-flow
+
+The workflow of the project looks like this:
+
+- **Data fetch:** Data is fetched from kaggle dataset through it's API.
+- **Data Split:** Here the data is splited into 2(4) parts for training and testing for each with x and y.
+- **Gini Impurity and best split:** The gini impurity is calculated in every possible trashold, then split with best(lowest) score is choosen.
+
+$$
+split score = \frac{n_{left}}{n_{total}} Gini(left) + \frac{n_{right}}{n_{left}} Gini(right)
+$$
+- **Prediction leaf:** When there's no possible treshold or data is very pure or if the model reached it's maximum depth we make a preciditon leaf. It takes the mode of the data.
+
+- **repeat:** repeat to calculate gini impurity, split, and build predictin leaf untill it reaches the max depth. the last node is always a prediction leaf.
+
+- **Running/Testing/Plotting:** We run the data through testing data and find accuracy. Also I have ploted all the decision tree too - bonus download button for every tree.
+
 
