@@ -10,4 +10,12 @@ This is what the accuracy of model in training and test looks like in defferent 
 
 Decision Tree is a supervised meachine learning algorithm where it splits data using a treshold on and on untill it reaches to leaf(prediction). It is usually classification model but sometimes it can be used as regression model thouough I have used classification.
 
+## Feature
+
+This project was made by me to understand Decision from scratch so it has decision tree applied from scratch. But also:
+
+- Decision tree from scratch.
+- Decision tree visulization
+- streamlit cache
+
 
