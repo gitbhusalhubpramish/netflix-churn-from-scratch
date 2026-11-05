@@ -106,7 +106,8 @@ def build_graph(root):
 	traverse(root)
 	return """digraph Tree{\n graph [rankdir=TB, nodesep=0.1, ranksep=0.3 spline=line, fontsize=5, pad = 0.1]; node [fontsize=2, width=auto, height=auto, margin="0.08, 0.05", fixedsize=false] edge [fontsize=2, arrowsixe = 0.1];""" + "\n".join(graph)+"}"
 
-
+st.write('''## Algorithm''')
+st.write('''It uses Decision tree to predict data. A decision tree is a supervised learning algorithm which splits data according to feature and it's trashold untill it reaches to prediction leaf. The training algorithm splits data so it has least impurity.''')
 
 
 st.write('''## Models''')
